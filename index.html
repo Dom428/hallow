@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hallow - small Windows apps for gamers</title>
+<meta name="description" content="Hallow is a family of small, free Windows apps for gaming PCs: a volume mixer, game launcher, save backups, stats overlay, phone remote, instant replay, PC toolkit and a password manager.">
+<style>
+  :root { --bg:#13111a; --panel:#1d1a26; --panel2:#24202f; --line:#2f2a3c; --text:#ece9f3; --muted:#a29db0; --accent:#f97316; --accent2:#a78bfa; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 40px; text-align:center; background:radial-gradient(ellipse at top, rgba(249,115,22,.16), transparent 60%); }
+  .logo { font-size:56px; font-weight:300; letter-spacing:.5px; margin:0; }
+  .logo b { color:var(--accent); font-weight:700; }
+  .tag { color:var(--muted); font-size:20px; max-width:680px; margin:12px auto 28px; }
+  .btn { display:inline-block; background:var(--accent); color:#1a1006; font-weight:600; padding:12px 22px; border-radius:10px; }
+  .btn:hover { text-decoration:none; filter:brightness(1.08); }
+  .btn.ghost { background:var(--panel2); color:var(--text); border:1px solid var(--line); margin-left:8px; }
+  .small { color:var(--muted); font-size:14px; margin-top:14px; }
+  .points { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:8px 0 56px; }
+  .point { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .point h3 { margin:0 0 4px; font-size:16px; color:var(--accent2); }
+  .point p { margin:0; color:var(--muted); font-size:14.5px; }
+  h2 { font-size:28px; margin:0 0 6px; }
+  .lead { color:var(--muted); margin:0 0 26px; }
+  .app { display:grid; grid-template-columns:1fr 1.25fr; gap:28px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:26px; margin-bottom:22px; }
+  .app:nth-child(even) .shot { order:-1; }
+  .app h3 { margin:0; font-size:24px; font-weight:400; }
+  .app h3 b { color:var(--accent); font-weight:700; }
+  .app .what { color:var(--accent2); font-weight:600; margin:2px 0 10px; }
+  .app ul { margin:0 0 16px; padding-left:20px; color:var(--muted); }
+  .app li { margin:3px 0; }
+  .shot img { width:100%; border-radius:12px; border:1px solid var(--line); display:block; }
+  .shot.strip { display:flex; align-items:center; min-height:120px; background:repeating-linear-gradient(45deg,#1b2433,#1b2433 14px,#202a3a 14px,#202a3a 28px); border-radius:12px; padding:18px; }
+  .note { background:rgba(249,115,22,.09); border:1px solid rgba(249,115,22,.35); border-radius:10px; padding:10px 12px; color:#f6c9a6; font-size:14px; margin:0 0 14px; }
+  .links a { margin-right:16px; font-weight:600; }
+  .family { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:26px; margin:40px 0; }
+  .family ul { color:var(--muted); margin:10px 0 0; padding-left:20px; }
+  footer { color:var(--muted); font-size:14px; text-align:center; padding:30px 0 50px; border-top:1px solid var(--line); margin-top:40px; }
+  @media (max-width:820px) { .app { grid-template-columns:1fr; } .app:nth-child(even) .shot { order:0; } .logo { font-size:42px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1 class="logo"><b>HALLOW</b></h1>
+    <p class="tag">Small, free Windows apps for a gaming PC. Each one does one job well, and they work even better together.</p>
+    <a class="btn" href="https://github.com/Dom428/hallow-setup/releases/latest/download/Hallow.Setup.zip">Get Hallow Setup</a>
+    <a class="btn ghost" href="#apps">See the apps</a>
+    <p class="small">Windows 10 / 11 - Hallow Setup installs, updates and starts the apps for you. Every download is checked against GitHub's checksum.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="points">
+    <div class="point"><h3>Tiny and quick</h3><p>No big runtime, no account, no ads. Each app is a single small program.</p></div>
+    <div class="point"><h3>Stays on your PC</h3><p>No cloud, no tracking. Crash reports are kept on your PC and never sent anywhere.</p></div>
+    <div class="point"><h3>Anti-cheat safe</h3><p>Nothing hooks into games. The overlay and recorder use Windows' own APIs.</p></div>
+    <div class="point"><h3>Updates itself</h3><p>Each app checks GitHub, asks first, and verifies the download before installing.</p></div>
+  </div>
+
+  <h2 id="apps">The apps</h2>
+  <p class="lead">Pick the ones you want - every app works on its own.</p>
+
+  <section>
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> MIXER</h3>
+        <div class="what">A per-app volume mixer like SteelSeries Sonar</div>
+        <ul>
+          <li>Game, Chat, Music and Media channels with a game/chat balance slider</li>
+          <li>Mic tools: test, auto level, mute hotkey and a muted-mic warning</li>
+          <li>Presets and profiles, per-app output, app rules ("always starts at 50%")</li>
+          <li>Smart volume, loudness meter, EQ through Equalizer APO</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-mixer/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-mixer">More</a></div>
+      </div>
+      <div class="shot"><img src="img/mixer.png" alt="Hallow Mixer window with channel sliders" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> HUB</h3>
+        <div class="what">All your games in one launcher</div>
+        <ul>
+          <li>Finds your Steam, Epic and Battle.net games by itself; add anything else, emulators too</li>
+          <li>Playtime stats, collections, play status, ratings, notes and links</li>
+          <li>Per-game mixer presets, launch options and "close apps while I play"</li>
+          <li>Surprise me: a random pick from your backlog. Big Picture mode for the couch</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-hub/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-hub">More</a></div>
+      </div>
+      <div class="shot"><img src="img/hub.png" alt="Hallow Hub game library" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> VAULT</h3>
+        <div class="what">Game save backups, like Ludusavi</div>
+        <ul>
+          <li>Finds saves for your games, including registry saves, using PCGamingWiki's save database</li>
+          <li>Backs up when a game closes, before updates and on a schedule</li>
+          <li>Put any version back. "Check backups" proves every backup is intact</li>
+          <li>Add games no launcher knows about</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-vault/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-vault">More</a></div>
+      </div>
+      <div class="shot"><img src="img/vault.png" alt="Hallow Vault list of games and backups" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> OVERLAY</h3>
+        <div class="what">A see-through stats panel over your games</div>
+        <ul>
+          <li>FPS and 1% lows, CPU, GPU, temperatures, RAM and ping</li>
+          <li>Which game server you're on, with packet loss and jitter</li>
+          <li>A big MIC MUTED warning, benchmarks and match history</li>
+          <li>Your own layout and your own hotkeys</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-overlay/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-overlay">More</a></div>
+      </div>
+      <div class="shot strip"><img src="img/overlay.png" alt="Hallow Overlay stats strip" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> REMOTE</h3>
+        <div class="what">Your phone as a remote for your PC</div>
+        <ul>
+          <li>Mixer sliders, mic mute, start games, save clips, back up saves</li>
+          <li>Live stats, media keys, PC volume, trackpad and keyboard (opt-in)</li>
+          <li>Send files both ways between phone and PC</li>
+          <li>Works over Tailscale or home Wi-Fi with a secret link - no app store needed</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-remote/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-remote">More</a></div>
+      </div>
+      <div class="shot"><img src="img/remote.png" alt="Hallow Remote settings" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> CLIPS</h3>
+        <div class="what">Instant replay, like ShadowPlay or Medal</div>
+        <ul>
+          <li>Ctrl+Alt+S saves the last moments, encoded on your graphics card</li>
+          <li>Game, Discord and mic on their own sound tracks</li>
+          <li>Trim, highlight reels, GIFs, phone versions and Copy for Discord</li>
+          <li>Steps aside when Discord's own Clips is recording</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-clips/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-clips">More</a></div>
+      </div>
+      <div class="shot"><img src="img/clips.png" alt="Hallow Clips settings and clips" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> TOOLKIT</h3>
+        <div class="what">One-click PC tune-up and gaming tools</div>
+        <ul>
+          <li>Clean-up, privacy tweaks with Undo, drivers, startup apps and app updates</li>
+          <li>Per-game rules: priority, CPU cores and power plan while a game runs</li>
+          <li>Background restraint and IdleSaver, like Process Lasso</li>
+          <li>Health, network, storage and system info pages</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-toolkit/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-toolkit">More</a></div>
+      </div>
+      <div class="shot"><img src="img/toolkit.png" alt="Hallow Toolkit Gaming page" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> KEYS</h3>
+        <div class="what">A password manager that keeps everything on your PC</div>
+        <p class="note">A personal project. It hasn't had an independent security audit, so it isn't a replacement for an audited password manager.</p>
+        <ul>
+          <li>AES-256-GCM vault, generator, 2FA codes, Password Health and leak check</li>
+          <li>Browser autofill for logins, cards and addresses (Chrome, Edge, Brave, Firefox)</li>
+          <li>Fills logins into game launchers like Steam and Battle.net (opt-in)</li>
+          <li>History, trash, tags, duplicates, encrypted backups and import from NordPass / Bitwarden</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-keys/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-keys">More</a></div>
+      </div>
+      <div class="shot"><img src="img/keys.png" alt="Hallow Keys with made-up example items" loading="lazy"></div>
+    </div>
+
+    <div class="app">
+      <div>
+        <h3><b>HALLOW</b> SETUP</h3>
+        <div class="what">Install, update and uninstall the family</div>
+        <ul>
+          <li>Tick the apps you want and install them in one go</li>
+          <li>Turn Start with Windows on or off for each app</li>
+          <li>Clean uninstall to the Recycle Bin - your backups and clips are never touched</li>
+        </ul>
+        <div class="links"><a href="https://github.com/Dom428/hallow-setup/releases/latest">Download</a><a href="https://github.com/Dom428/hallow-setup">More</a></div>
+      </div>
+      <div class="shot"><img src="img/setup.png" alt="Hallow Setup app list" loading="lazy"></div>
+    </div>
+  </section>
+
+  <div class="family">
+    <h2>Better together</h2>
+    <p class="lead" style="margin:0">Every app works alone, and lights up extra features when the others are running:</p>
+    <ul>
+      <li>One Hallow icon in the tray for the whole family (hosted by Hub)</li>
+      <li>One accent colour for every app, picked in Toolkit</li>
+      <li>Clip saved and mic muted messages appear in the Overlay; break reminders from Hub too</li>
+      <li>Hub game pages show that game's clips, save backups and mixer preset</li>
+      <li>Remote controls all of them from your phone</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Hallow is a hobby project by <a href="https://github.com/Dom428">Dom428</a>. Free to download and use; no warranty.
+    Icons: <a href="https://fontawesome.com">Font Awesome Free</a> (CC BY 4.0). Game artwork in screenshots belongs to its owners.
+  </div>
+</footer>
+</body>
+</html>
